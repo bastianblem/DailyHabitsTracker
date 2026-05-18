@@ -1,75 +1,18 @@
-# Nuxt Minimal Starter
+# Daily Habits Tracker
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## TODO - Planning:
 
-## Setup
+I want to implement the following workflow(features):
 
-Make sure to install dependencies:
+    - Create Habit
+    - Delete Habit
+    - Mark as Done
+    - Save in localStorage
 
-```bash
-# npm
-npm install
+## Goal:
 
-# pnpm
-pnpm install
+I want to learn the following:
 
-# yarn
-yarn install
+    - reactive data architecture
+    - collection state management
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
