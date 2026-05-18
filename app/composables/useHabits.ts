@@ -3,11 +3,12 @@ import { ref, watch, onMounted } from "vue"
 
 export function useHabits() {
     const habits = ref<HabitType[]>([])
-    const saved = localStorage.getItem("habits")
-    if(saved) {
-        habits.value = JSON.parse(saved)
-    }
-
+    onMounted(() => {
+        const saved = localStorage.getItem("habits")
+        if (saved) {
+            habits.value = JSON.parse(saved)
+        }
+    })
     watch(
         habits,
         (val) => {
