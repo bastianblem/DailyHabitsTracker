@@ -14,17 +14,19 @@
           placeholder="Passwort"
           class="p-4 py-2 rounded-full border border-gray-500"
         />
+        <input
+          type="text"
+          placeholder="Passwort wiederholen"
+          class="p-4 py-2 rounded-full border border-gray-500"
+        />
       </div>
       <div class="flex flex-col gap-2">
         <button
           class="bg-black/80 text-white font-medium px-4 py-2 rounded-full border border-black transition hover:bg-black hover:scale-105"
         >
-          Login
+          Registrieren
         </button>
-        <div>
-          <p>Passwort vergessen</p>
-          <p>Ich habe noch kein Konto.</p>
-        </div>
+        <p>Ich habe bereits ein Konto.</p>
       </div>
     </div>
   </main>
