@@ -21,12 +21,17 @@
         />
       </div>
       <div class="flex flex-col gap-2">
-        <button
-          class="bg-black/80 text-white font-medium px-4 py-2 rounded-full border border-black transition hover:bg-black hover:scale-105"
-        >
-          Registrieren
-        </button>
-        <p>Ich habe bereits ein Konto.</p>
+        <NuxtLink to="/login" custom v-slot="{ navigate, isActive }">
+          <button
+            type="button"
+            @click="navigate"
+            :aria-current="isActive ? 'page' : undefined"
+            class="bg-black/80 text-white font-medium px-4 py-2 rounded-full border border-black transition hover:bg-black hover:scale-105"
+          >
+            Registrieren
+          </button>
+        </NuxtLink>
+        <NuxtLink to="/login">Ich habe bereits ein Konto.</NuxtLink>
       </div>
     </div>
   </main>
