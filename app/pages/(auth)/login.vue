@@ -1,8 +1,10 @@
 <template>
-  <main class="flex flex-col justify-center items-center gap-4 mt-28">
+  <main class="flex flex-col justify-center items-center gap-4">
     <h1 class="font-bold text-4xl">Willkommen beim Login!</h1>
     <p>Logge dich ein, um unser umfängliches Angebot zu nutzen.</p>
-    <div class="flex flex-col justify-center items-center gap-2 mt-4">
+    <div
+      class="flex flex-col justify-center items-center text-center gap-2 mt-4"
+    >
       <div class="flex flex-col gap-2">
         <input
           type="text"
@@ -16,10 +18,12 @@
         />
       </div>
       <div class="flex flex-col gap-2">
-        <ActionButton variant="secondary" to="/"> Login </ActionButton>
+        <ActionButton variant="secondary" width="compact" to="/">
+          Login
+        </ActionButton>
         <div class="flex flex-col gap-1">
-          <NuxtLink to="/guest">Passwort vergessen</NuxtLink>
-          <NuxtLink to="/register">Ich habe noch kein Konto.</NuxtLink>
+          <NuxtLink to="/forgotPassword">Forgot your password?</NuxtLink>
+          <NuxtLink to="/register">I have no account yet.</NuxtLink>
         </div>
       </div>
     </div>
@@ -27,4 +31,5 @@
 </template>
 <script setup lang="ts">
 import ActionButton from "~/components/buttons/ActionButton.vue";
+definePageMeta({ layout: "auth" });
 </script>

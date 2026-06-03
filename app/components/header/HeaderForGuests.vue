@@ -2,11 +2,11 @@
   <header
     class="mb-10 flex items-center justify-between rounded-card border border-border bg-surface/70 px-5 py-4 shadow-soft backdrop-blur"
   >
-    <NuxtLink to="/" class="text-lg font-semibold tracking-tight text-text"
+    <NuxtLink class="text-lg font-semibold tracking-tight text-text"
       >HabitsTracker</NuxtLink
     >
 
-    <nav class="flex items-center gap-3 text-sm">
+    <nav class="flex items-center gap-4 text-sm">
       <NuxtLink to="/guest" class="text-text/80 transition hover:text-text"
         >How To</NuxtLink
       >
@@ -16,9 +16,13 @@
       <NuxtLink to="/guest" class="text-text/80 transition hover:text-text"
         >Contact</NuxtLink
       >
-      <ActionButton variant="primary" to="/login"> Login </ActionButton>
+      <ActionButton variant="primary" width="compact" to="/login">
+        Login
+      </ActionButton>
 
-      <ActionButton variant="secondary" to="/register"> Register </ActionButton>
+      <ActionButton variant="secondary" width="compact" to="/register">
+        Register
+      </ActionButton>
     </nav>
   </header>
 </template>
