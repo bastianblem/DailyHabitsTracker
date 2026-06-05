@@ -1,13 +1,16 @@
-export type HabitState = "daily" | "weekly" | "monthly"
-export type HabitRating = "low" | "medium" | "high"
+export type HabitState = "daily" | "weekly" | "monthly";
+export type HabitRating = "good" | "neither" | "bad";
 
-export type HabitType = {
-    id: string,
-    title: string,
-    description?: string,
-    rating: HabitRating,
-    repetition: HabitState,
-    completedDates: string[],
-    createdAt: number,
-    color?: string
-}
+export type HabitPlan = {
+  id: string;
+  title: string;
+  description?: string;
+  rating?: HabitRating;
+  repetition: HabitState;
+  startDate?: string;
+  goal?: number;
+  steps?: string[];
+  active?: boolean;
+  color?: string;
+  createdAt: number;
+};

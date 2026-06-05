@@ -2,7 +2,7 @@
   <HeaderForGuests />
   <main class="flex flex-col justify-center items-center gap-2 mt-28">
     <h1 class="font-bold text-4xl">Willkommen auf der Seite für Gäste!</h1>
-    <p>Logge dich ein, um deine Habits zu tracken!</p>
+    <p>Logge dich ein, um deine Habits zu bauen!</p>
     <ActionButton variant="ghost" width="auto" to="/guest"
       >Als Gast fortfahren</ActionButton
     >

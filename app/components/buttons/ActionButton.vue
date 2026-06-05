@@ -60,13 +60,13 @@ const sizeClasses: Record<Size, string> = {
 };
 
 const widthClasses: Record<Width, string> = {
-  auto: "w-fit",
-  compact: "min-w-[10rem]",
+  auto: "w-full",
+  compact: "w-full",
   full: "w-full",
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-full font-medium transition duration-200 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex min-w-0 items-center justify-center rounded-full font-medium transition duration-200";
 
 const classes = computed(() => [
   baseClasses,
