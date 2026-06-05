@@ -10,10 +10,10 @@
       <NuxtLink to="/" class="text-text/80 transition hover:text-text"
         >Dashboard</NuxtLink
       >
-      <NuxtLink to="/" class="text-text/80 transition hover:text-text"
+      <NuxtLink to="/contact" class="text-text/80 transition hover:text-text"
         >Contact</NuxtLink
       >
-      <NuxtLink to="/" class="text-text/80 transition hover:text-text"
+      <NuxtLink to="/settings" class="text-text/80 transition hover:text-text"
         >Settings</NuxtLink
       >
       <ActionButton variant="secondary" width="compact" to="/guest">

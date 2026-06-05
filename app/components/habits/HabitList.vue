@@ -23,7 +23,7 @@
 </template>
 <script setup lang="ts">
 import type { HabitPlan } from "~/types/habit";
-import HabitCard from "~/components/habits/HabitCard.vue";
+import HabitCard from "~/components/cards/HabitCard.vue";
 
 defineProps<{
   habits: HabitPlan[];

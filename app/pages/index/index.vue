@@ -28,7 +28,7 @@
 </template>
 <script setup lang="ts">
 import Header from "~/components/header/Header.vue";
-import HabitForm from "~/components/habits/HabitForm.vue";
+import HabitForm from "~/components/forms/HabitForm.vue";
 import HabitList from "~/components/habits/HabitList.vue";
 import type { HabitPlan } from "~/types/habit";
 import { useHabits } from "~/composables/useHabits";
