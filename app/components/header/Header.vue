@@ -1,6 +1,6 @@
 <template>
   <header
-    class="mb-10 flex items-center justify-between rounded-card border border-border bg-surface/70 px-5 py-4 shadow-soft backdrop-blur"
+    class="mx-auto mt-8 mb-10 flex max-w-5xl items-center justify-between rounded-2xl border border-white/10 bg-surface/40 px-5 py-4 shadow-soft backdrop-blur-xl"
   >
     <NuxtLink to="/" class="text-lg font-semibold tracking-tight text-text"
       >Habit Builder</NuxtLink

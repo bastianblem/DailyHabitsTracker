@@ -2,10 +2,14 @@
   <Header />
   <main class="mx-auto w-full max-w-6xl px-6 py-10">
     <header class="text-center mb-8">
-      <h1 class="font-bold text-4xl">Willkommen auf der HomePage!</h1>
-      <p class="mt-2 text-muted max-w-2xl mx-auto">
-        Hier kannst du deine täglichen/wöchentlichen/monatlichen Habits langsam
-        aufbauen und verwalten.
+      <h1 class="font-bold text-4xl">Welcome to the dashboard!</h1>
+      <p
+        class="mt-2 max-w-2xl mx-auto text-4xl font-semibold tracking-tight text-text"
+      >
+        Here you can build your
+        <span class="text-accent border-r border-accent pr-1">{{
+          display
+        }}</span>
       </p>
     </header>
 
@@ -25,17 +29,53 @@
       </div>
     </div>
   </main>
+  <Footer />
 </template>
 <script setup lang="ts">
 import Header from "~/components/header/Header.vue";
 import HabitForm from "~/components/forms/HabitForm.vue";
 import HabitList from "~/components/habits/HabitList.vue";
-import type { HabitPlan } from "~/types/habit";
-import { useHabits } from "~/composables/useHabits";
 import HabitStats from "~/components/habits/HabitStats.vue";
+import Footer from "~/components/footer/Footer.vue";
+import type { HabitPlan } from "~/types/habit";
+import { ref, onMounted } from "vue";
+import { useHabits } from "~/composables/useHabits";
 
 const { habits, addHabit, deleteHabit, setActive } = useHabits();
 function onSubmit(habit: HabitPlan) {
   addHabit(habit);
 }
+
+const words = ["habits", "routines", "discipline", "consistency"];
+const current = ref(0);
+const display = ref("");
+const typing = ref(true);
+
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function loop() {
+  while (true) {
+    const word = words[current.value];
+
+    // type
+    for (let i = 0; i <= word.length; i++) {
+      display.value = word.slice(0, i);
+      await sleep(80);
+    }
+
+    await sleep(1200);
+
+    // delete
+    for (let i = word.length; i >= 0; i--) {
+      display.value = word.slice(0, i);
+      await sleep(40);
+    }
+
+    current.value = (current.value + 1) % words.length;
+  }
+}
+
+onMounted(loop);
 </script>
