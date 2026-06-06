@@ -3,8 +3,17 @@
     @submit.prevent="onSubmit"
     class="space-y-4 mx-auto w-full max-w-xl px-4 py-6"
   >
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-semibold">
+        {{ editing ? "Edit Habit" : "Add Habit" }}
+      </h3>
+    </div>
+
     <div
-      class="grid gap-3 w-full rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+      :class="[
+        'grid gap-3 w-full rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-shadow duration-200 focus-within:ring-4 focus-within:ring-accent/40',
+        editing ? 'ring-4 ring-amber-400/40' : '',
+      ]"
     >
       <div>
         <label class="block text-sm font-medium mb-1">Title</label>
@@ -97,15 +106,17 @@
         type="submit"
         class="bg-accent px-4 py-2 rounded-xl text-accent-text"
       >
-        Add Habit
+        {{ editing ? "Save" : "Add Habit" }}
       </button>
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, computed } from "vue";
 import type { HabitPlan, HabitRating, HabitState } from "~/types/habit";
+
+const props = defineProps<{ initial?: HabitPlan | null }>();
 
 const emit = defineEmits<{
   (e: "submit", habit: HabitPlan): void;
@@ -121,9 +132,35 @@ const rating = ref<HabitRating>("neither");
 const repetition = ref<HabitState>("daily");
 const color = ref("#f59e0b");
 
+// Prefill when editing
+watch(
+  () => props.initial,
+  (v) => {
+    if (!v) {
+      resetForm();
+      return;
+    }
+    title.value = v.title || "";
+    description.value = v.description || "";
+    startDate.value = v.startDate || "";
+    goal.value = typeof v.goal === "number" ? v.goal : null;
+    stepsText.value = (v.steps || []).join(", ");
+    rating.value = v.rating ?? "neither";
+    repetition.value = v.repetition ?? "daily";
+    color.value = v.color ?? "#f59e0b";
+  },
+  { immediate: true },
+);
+
+const editing = computed(() => !!props.initial);
+
 function buildHabit(): HabitPlan {
+  const id =
+    props.initial?.id ??
+    globalThis.crypto?.randomUUID?.() ??
+    String(Date.now());
   return {
-    id: globalThis.crypto?.randomUUID?.() ?? String(Date.now()),
+    id,
     title: title.value.trim(),
     description: description.value.trim() || undefined,
     rating: rating.value,
@@ -134,9 +171,9 @@ function buildHabit(): HabitPlan {
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean),
-    active: true,
+    active: props.initial?.active ?? true,
     color: color.value,
-    createdAt: Date.now(),
+    createdAt: props.initial?.createdAt ?? Date.now(),
   };
 }
 

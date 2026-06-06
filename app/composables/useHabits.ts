@@ -33,11 +33,18 @@ export function useHabits() {
       h.id === id ? { ...h, active } : h,
     );
   }
+
+  function toggleActive(id: string) {
+    habits.value = habits.value.map((h) =>
+      h.id === id ? { ...h, active: !h.active } : h,
+    );
+  }
   return {
     habits,
     addHabit,
     deleteHabit,
     updateHabit,
     setActive,
+    toggleActive,
   };
 }

@@ -17,14 +17,19 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="md:col-span-1 space-y-6">
-        <HabitForm @submit="onSubmit" />
+        <HabitForm
+          :initial="editingPlan"
+          @submit="onSubmit"
+          @cancel="editingPlan = null"
+        />
       </div>
 
       <div class="md:col-span-2">
         <HabitList
           :habits="habits"
           @delete="deleteHabit"
-          @toggle="(id) => setActive(id, true)"
+          @toggle="onToggle"
+          @edit="onEdit"
         />
       </div>
     </div>
@@ -41,23 +46,29 @@ import type { HabitPlan } from "~/types/habit";
 import { ref, onMounted } from "vue";
 import { useHabits } from "~/composables/useHabits";
 
-const { habits, addHabit, deleteHabit, setActive } = useHabits();
-function onSubmit(habit: HabitPlan) {
-  addHabit(habit);
-}
-
+const { habits, addHabit, deleteHabit, setActive, updateHabit, toggleActive } =
+  useHabits();
+const editingPlan = ref<HabitPlan | null>(null);
 const words = ["habits", "routines", "discipline", "consistency"];
 const current = ref(0);
 const display = ref("");
 const typing = ref(true);
 
+function onSubmit(plan: HabitPlan) {
+  if (editingPlan.value) {
+    updateHabit(plan);
+    editingPlan.value = null;
+  } else {
+    addHabit(plan);
+  }
+}
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
 async function loop() {
   while (true) {
-    const word = words[current.value];
+    const word = words[current.value] || "";
 
     // type
     for (let i = 0; i <= word.length; i++) {
@@ -75,6 +86,15 @@ async function loop() {
 
     current.value = (current.value + 1) % words.length;
   }
+}
+
+function onEdit(id: string) {
+  const p = habits.value.find((h) => h.id === id);
+  if (p) editingPlan.value = { ...p };
+}
+
+function onToggle(id: string) {
+  toggleActive(id);
 }
 
 onMounted(loop);

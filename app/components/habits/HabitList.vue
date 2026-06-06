@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto w-full px-4 py-6">
+  <div class="mx-auto space-y-4 w-full px-4 py-6">
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-semibold">Your list of habits</h3>
+    </div>
+
     <div
       v-if="!habits || habits.length === 0"
       class="rounded-2xl border border-border bg-surface/80 p-6 text-center"
